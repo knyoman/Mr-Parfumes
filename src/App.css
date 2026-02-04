@@ -1,0 +1,116 @@
+/* App.css - Main App Styles */
+
+/* Smooth scroll for entire app */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Main app container */
+.app {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Floating WhatsApp Button */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.75rem;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  animation: pulse-wa 2s ease-in-out infinite;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+}
+
+@keyframes pulse-wa {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6);
+  }
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+/* Loading state */
+.app-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.app-loading-text {
+  color: var(--color-secondary);
+  font-size: 2rem;
+  font-weight: 700;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive floating buttons */
+@media (max-width: 576px) {
+  .floating-whatsapp {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+  }
+  
+  .back-to-top {
+    bottom: 20px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}

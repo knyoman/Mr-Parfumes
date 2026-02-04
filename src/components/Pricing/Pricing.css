@@ -1,0 +1,190 @@
+/* Pricing Section Styles */
+
+.pricing {
+  background: var(--color-bg-alt);
+  position: relative;
+}
+
+.pricing-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid transparent;
+  transition: all var(--transition-normal);
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--gradient-gold);
+}
+
+.pricing-card:hover {
+  border-color: var(--color-secondary);
+  transform: translateY(-5px);
+}
+
+.pricing-promo {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.pricing-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.pricing-subtitle {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+}
+
+.pricing-price {
+  margin-bottom: var(--spacing-lg);
+}
+
+.price-original {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.price-current {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.price-period {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  font-weight: 400;
+}
+
+.pricing-includes {
+  text-align: left;
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+}
+
+.pricing-includes-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.pricing-includes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pricing-includes-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.pricing-includes-icon {
+  color: var(--color-success);
+  font-size: 1.25rem;
+}
+
+.pricing-cta {
+  margin-bottom: var(--spacing-lg);
+}
+
+.pricing-cta .btn-whatsapp {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 1.5rem 2rem;
+}
+
+.pricing-guarantee {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-light);
+  font-size: 0.875rem;
+}
+
+.guarantee-icon {
+  color: var(--color-secondary);
+  font-size: 1.25rem;
+}
+
+.stock-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: var(--spacing-lg);
+  padding: 0.75rem 1rem;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: var(--radius-md);
+  color: #ee5a5a;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.stock-warning-icon {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@media (max-width: 576px) {
+  .pricing-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .price-current {
+    font-size: 2.5rem;
+  }
+  
+  .pricing-guarantee {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+}
