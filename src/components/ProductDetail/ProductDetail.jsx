@@ -15,6 +15,7 @@ const perfumeCollection = [
   {
     id: 1,
     name: 'Noir Élégance',
+    category: 'Parfum Pria',
     description: 'Perpaduan aroma maskulin dan misterius. Cocok untuk pria yang percaya diri dan berkelas.',
     image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=500&fit=crop&auto=format',
     originalPrice: 850000,
@@ -24,6 +25,7 @@ const perfumeCollection = [
   {
     id: 2,
     name: 'Rose Mystique',
+    category: 'Parfum Wanita',
     description: 'Aroma feminin yang elegan dengan sentuhan rose dan vanilla. Sempurna untuk wanita modern.',
     image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&h=500&fit=crop&auto=format',
     originalPrice: 799000,
@@ -33,6 +35,7 @@ const perfumeCollection = [
   {
     id: 3,
     name: 'Ocean Breeze',
+    category: 'Unisex',
     description: 'Kesegaran aroma laut yang menyegarkan. Unisex, cocok untuk aktivitas sehari-hari.',
     image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&h=500&fit=crop&auto=format',
     originalPrice: 750000,
@@ -83,6 +86,7 @@ const ProductCard = ({ product }) => {
 
       {/* Product Info */}
       <div className="product-card-info">
+        <span className="product-card-category">{product.category}</span>
         <h3 className="product-card-name">{product.name}</h3>
         <p className="product-card-description">{product.description}</p>
 

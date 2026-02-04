@@ -93,6 +93,16 @@
   flex: 1;
 }
 
+.product-card-category {
+  display: inline-block;
+  color: var(--color-secondary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.4rem;
+}
+
 .product-card-name {
   font-size: 1.25rem;
   font-weight: 700;
