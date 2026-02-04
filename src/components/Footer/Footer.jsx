@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
             <div className="footer-social">
               <a 
-                href="https://instagram.com/mrparfum" 
+                href="https://instagram.com/knyoman.26" 
                 className="social-link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -74,11 +74,11 @@ const Footer = () => {
             </div>
             <div className="footer-contact-item">
               <span className="footer-contact-icon">📧</span>
-              <span>hello@mrparfum.id</span>
+              <span>hello@mrparfumes.id</span>
             </div>
             <div className="footer-contact-item">
               <span className="footer-contact-icon">📍</span>
-              <span>Jakarta, Indonesia</span>
+              <span>Palembang, Indonesia</span>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="footer-bottom">
           <p className="footer-copyright">
-            © {currentYear} MrPARFUM. All rights reserved.
+            © {currentYear} MrParfumes. All rights reserved.
           </p>
           <div className="footer-legal">
             <a href="#privacy">Privacy Policy</a>

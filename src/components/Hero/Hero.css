@@ -133,10 +133,12 @@
 }
 
 .hero-image {
-  max-width: 400px;
+  max-width: 320px;
   width: 100%;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
-  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
 }
 
 /* Decorative Circles */

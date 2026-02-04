@@ -1,48 +1,16 @@
 /**
  * ProductDetail Component - Signature Collection
  * 
- * Menampilkan 3 koleksi parfum dengan nama, deskripsi, harga,
- * dan tombol order via WhatsApp.
+ * Menampilkan koleksi parfum dari Contentful CMS dengan nama, deskripsi, 
+ * harga, kategori, dan tombol order via WhatsApp.
  */
 
+import { useState, useEffect } from 'react';
+import client from '../../contentful';
 import './ProductDetail.css';
 
 // Nomor WhatsApp (ganti dengan nomor asli)
 const WHATSAPP_NUMBER = '6281234567890';
-
-// Data 3 Koleksi Parfum
-const perfumeCollection = [
-  {
-    id: 1,
-    name: 'Noir Élégance',
-    category: 'Parfum Pria',
-    description: 'Perpaduan aroma maskulin dan misterius. Cocok untuk pria yang percaya diri dan berkelas.',
-    image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=500&fit=crop&auto=format',
-    originalPrice: 850000,
-    currentPrice: 599000,
-    badges: ['Best Seller']
-  },
-  {
-    id: 2,
-    name: 'Rose Mystique',
-    category: 'Parfum Wanita',
-    description: 'Aroma feminin yang elegan dengan sentuhan rose dan vanilla. Sempurna untuk wanita modern.',
-    image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=400&h=500&fit=crop&auto=format',
-    originalPrice: 799000,
-    currentPrice: 549000,
-    badges: ['New']
-  },
-  {
-    id: 3,
-    name: 'Ocean Breeze',
-    category: 'Unisex',
-    description: 'Kesegaran aroma laut yang menyegarkan. Unisex, cocok untuk aktivitas sehari-hari.',
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&h=500&fit=crop&auto=format',
-    originalPrice: 750000,
-    currentPrice: 499000,
-    badges: ['Limited']
-  }
-];
 
 // Format harga ke Rupiah
 const formatPrice = (price) => {
@@ -62,43 +30,42 @@ const getWhatsAppLink = (productName) => {
 
 // Product Card Component
 const ProductCard = ({ product }) => {
+  // Extract fields from Contentful response
+  // Field names: name, descripsition, price, categori, image, featured
+  const { name, descripsition, price, categori, image, featured } = product.fields;
+  
+  // Get description text (handle rich text if needed)
+  const descriptionText = typeof descripsition === 'object' 
+    ? descripsition?.content?.[0]?.content?.[0]?.value || 'Deskripsi produk'
+    : descripsition || 'Deskripsi produk';
+
+  // Image is direct URL from ImageKit
+  const imageUrl = image || 'https://via.placeholder.com/400x300?text=No+Image';
+
   return (
     <div className="product-card">
       {/* Product Image */}
       <div className="product-card-image">
-        {/* Badges */}
-        <div className="product-card-badges">
-          {product.badges.map((badge, index) => (
-            <span 
-              key={index} 
-              className={`product-badge ${badge === 'Best Seller' ? 'gold' : ''}`}
-            >
-              {badge}
-            </span>
-          ))}
-        </div>
-        
         <img 
-          src={product.image} 
-          alt={product.name}
+          src={imageUrl} 
+          alt={name || 'Parfum'}
         />
       </div>
 
       {/* Product Info */}
       <div className="product-card-info">
-        <span className="product-card-category">{product.category}</span>
-        <h3 className="product-card-name">{product.name}</h3>
-        <p className="product-card-description">{product.description}</p>
+        {categori && <span className="product-card-category">{categori}</span>}
+        <h3 className="product-card-name">{name || 'Nama Produk'}</h3>
+        <p className="product-card-description">{descriptionText}</p>
 
         {/* Price */}
         <div className="product-card-price">
-          <span className="price-original">{formatPrice(product.originalPrice)}</span>
-          <span className="price-current">{formatPrice(product.currentPrice)}</span>
+          <span className="price-current">{formatPrice(price || 0)}</span>
         </div>
 
         {/* Order Button */}
         <a 
-          href={getWhatsAppLink(product.name)}
+          href={getWhatsAppLink(name || 'Parfum')}
           className="product-card-btn"
           target="_blank"
           rel="noopener noreferrer"
@@ -110,7 +77,58 @@ const ProductCard = ({ product }) => {
   );
 };
 
+// Loading Skeleton Component
+const LoadingSkeleton = () => (
+  <div className="collection-grid">
+    {[1, 2, 3].map((i) => (
+      <div key={i} className="product-card skeleton">
+        <div className="product-card-image skeleton-image"></div>
+        <div className="product-card-info">
+          <div className="skeleton-text skeleton-category"></div>
+          <div className="skeleton-text skeleton-title"></div>
+          <div className="skeleton-text skeleton-desc"></div>
+          <div className="skeleton-text skeleton-price"></div>
+          <div className="skeleton-text skeleton-btn"></div>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 const ProductDetail = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch products from Contentful
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await client.getEntries({
+          content_type: 'mrParfumes',
+        });
+        
+        // Debug: lihat struktur data dari Contentful
+        console.log('Contentful Response:', response);
+        console.log('Items:', response.items);
+        if (response.items.length > 0) {
+          console.log('First item fields:', response.items[0].fields);
+        }
+        
+        setProducts(response.items);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Gagal memuat produk. Silakan coba lagi.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <section className="product-detail section" id="products">
       <div className="container">
@@ -121,12 +139,31 @@ const ProductDetail = () => {
           dengan bahan premium untuk memberikan pengalaman terbaik.
         </p>
 
-        {/* Collection Grid */}
-        <div className="collection-grid">
-          {perfumeCollection.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {/* Loading State */}
+        {loading && <LoadingSkeleton />}
+
+        {/* Error State */}
+        {error && (
+          <div className="error-message">
+            <p>{error}</p>
+          </div>
+        )}
+
+        {/* Products Grid */}
+        {!loading && !error && products.length > 0 && (
+          <div className="collection-grid">
+            {products.map((product) => (
+              <ProductCard key={product.sys.id} product={product} />
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && !error && products.length === 0 && (
+          <div className="empty-message">
+            <p>Belum ada produk tersedia.</p>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -8,11 +8,11 @@ import './Pricing.css';
 
 // Nomor WhatsApp (ganti dengan nomor asli)
 const WHATSAPP_NUMBER = '6281234567890';
-const PRODUCT_NAME = 'MrPARFUM Noir Élégance';
+const PRODUCT_NAME = 'MrParfumes Noir Élégance';
 
 // Data yang termasuk dalam paket
 const includesData = [
-  { icon: '✓', text: 'Parfum MrPARFUM Noir Élégance 100ml' },
+  { icon: '✓', text: 'Parfum MrParfumes Noir Élégance 100ml' },
   { icon: '✓', text: 'Box Premium Eksklusif' },
   { icon: '✓', text: 'Kartu Garansi Originalitas' },
   { icon: '✓', text: 'Bubble Wrap & Packing Aman' },
@@ -57,8 +57,8 @@ const Pricing = () => {
 
             {/* Price */}
             <div className="pricing-price">
-              <span className="price-original">Rp 850.000</span>
-              <span className="price-current">Rp 599.000</span>
+              <span className="price-original">Rp 500.000</span>
+              <span className="price-current">Rp 399.000</span>
               <span className="price-period">/ botol</span>
             </div>
 
@@ -83,7 +83,7 @@ const Pricing = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                📱 Order via WhatsApp
+                Pesan Sekarang
               </a>
             </div>
 

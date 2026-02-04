@@ -48,7 +48,7 @@ const Benefits = () => {
     <section className="benefits section" id="benefits">
       <div className="container">
         {/* Section Header */}
-        <h2 className="section-title">Mengapa Memilih MrPARFUM?</h2>
+        <h2 className="section-title">Mengapa Memilih MrParfumes?</h2>
         <p className="section-subtitle">
           Kami menghadirkan pengalaman parfum premium dengan kualitas terbaik 
           untuk menemani setiap momen berharga Anda.

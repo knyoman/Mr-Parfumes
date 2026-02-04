@@ -81,16 +81,6 @@ const Hero = () => {
               <span>Garansi Aroma</span>
             </div>
           </div>
-
-          {/* CTA Buttons */}
-          <div className="hero-buttons">
-            <button className="btn btn-primary" onClick={scrollToPricing}>
-              🛒 Pesan Sekarang
-            </button>
-            <a href="#products" className="btn btn-outline">
-              Lihat Koleksi
-            </a>
-          </div>
         </div>
 
         {/* Right Side - Visual */}
@@ -102,7 +92,7 @@ const Hero = () => {
           {/* Perfume bottle image */}
           <div className="hero-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=600&fit=crop&auto=format"
+              src="https://ik.imagekit.io/xjj8xi6a8/Mr-Parfumes/HeroSection.png"
               alt="MrPARFUM Premium Perfume Collection"
               className="hero-image"
             />
